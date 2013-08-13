@@ -1,0 +1,145 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="HumerResourceModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityContainer Name="HumerResourceModelStoreContainer">
+          <EntitySet Name="Addresses" EntityType="HumerResourceModel.Store.Addresses" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Agents" EntityType="HumerResourceModel.Store.Agents" store:Type="Tables" Schema="dbo" />
+          <AssociationSet Name="FK_Addresses_Agents" Association="HumerResourceModel.Store.FK_Addresses_Agents">
+            <End Role="Agents" EntitySet="Agents" />
+            <End Role="Addresses" EntitySet="Addresses" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Addresses">
+          <Key>
+            <PropertyRef Name="AddressID" />
+          </Key>
+          <Property Name="AddressID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Address1" Type="nchar" Nullable="false" MaxLength="10" />
+          <Property Name="Address2" Type="nchar" MaxLength="10" />
+          <Property Name="Town" Type="nchar" MaxLength="10" />
+          <Property Name="Contry" Type="nchar" MaxLength="10" />
+          <Property Name="Postcode" Type="nchar" Nullable="false" MaxLength="10" />
+          <Property Name="AgentsID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Agents">
+          <Key>
+            <PropertyRef Name="AgentsID" />
+          </Key>
+          <Property Name="AgentsID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="FirstName" Type="nchar" MaxLength="10" />
+          <Property Name="LastName" Type="nchar" MaxLength="10" />
+        </EntityType>
+        <Association Name="FK_Addresses_Agents">
+          <End Role="Agents" Type="HumerResourceModel.Store.Agents" Multiplicity="1" />
+          <End Role="Addresses" Type="HumerResourceModel.Store.Addresses" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Agents">
+              <PropertyRef Name="AgentsID" />
+            </Principal>
+            <Dependent Role="Addresses">
+              <PropertyRef Name="AgentsID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="HumerResourceModel" Alias="Self" p1:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:p1="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="HumerResourceEntities" p1:LazyLoadingEnabled="true">
+          <EntitySet Name="Addresses" EntityType="HumerResourceModel.Addresses" />
+          <EntitySet Name="Agents" EntityType="HumerResourceModel.Agents" />
+          <AssociationSet Name="FK_Addresses_Agents" Association="HumerResourceModel.FK_Addresses_Agents">
+            <End Role="Agents" EntitySet="Agents" />
+            <End Role="Addresses" EntitySet="Addresses" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Addresses">
+          <Key>
+            <PropertyRef Name="AddressID" />
+          </Key>
+          <Property Name="AddressID" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="Address1" Type="String" Nullable="false" MaxLength="10" Unicode="true" FixedLength="true" />
+          <Property Name="Address2" Type="String" MaxLength="10" Unicode="true" FixedLength="true" />
+          <Property Name="Town" Type="String" MaxLength="10" Unicode="true" FixedLength="true" />
+          <Property Name="Contry" Type="String" MaxLength="10" Unicode="true" FixedLength="true" />
+          <Property Name="Postcode" Type="String" Nullable="false" MaxLength="10" Unicode="true" FixedLength="true" />
+          <Property Name="AgentsID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Agents" Relationship="HumerResourceModel.FK_Addresses_Agents" FromRole="Addresses" ToRole="Agents" />
+        </EntityType>
+        <EntityType Name="Agents">
+          <Key>
+            <PropertyRef Name="AgentsID" />
+          </Key>
+          <Property Name="AgentsID" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="FirstName" Type="String" MaxLength="10" Unicode="true" FixedLength="true" />
+          <Property Name="LastName" Type="String" MaxLength="10" Unicode="true" FixedLength="true" />
+          <NavigationProperty Name="Addresses" Relationship="HumerResourceModel.FK_Addresses_Agents" FromRole="Agents" ToRole="Addresses" />
+        </EntityType>
+        <Association Name="FK_Addresses_Agents">
+          <End Role="Agents" Type="HumerResourceModel.Agents" Multiplicity="1" />
+          <End Role="Addresses" Type="HumerResourceModel.Addresses" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Agents">
+              <PropertyRef Name="AgentsID" />
+            </Principal>
+            <Dependent Role="Addresses">
+              <PropertyRef Name="AgentsID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="HumerResourceModelStoreContainer" CdmEntityContainer="HumerResourceEntities">
+          <EntitySetMapping Name="Addresses">
+            <EntityTypeMapping TypeName="HumerResourceModel.Addresses">
+              <MappingFragment StoreEntitySet="Addresses">
+                <ScalarProperty Name="AddressID" ColumnName="AddressID" />
+                <ScalarProperty Name="Address1" ColumnName="Address1" />
+                <ScalarProperty Name="Address2" ColumnName="Address2" />
+                <ScalarProperty Name="Town" ColumnName="Town" />
+                <ScalarProperty Name="Contry" ColumnName="Contry" />
+                <ScalarProperty Name="Postcode" ColumnName="Postcode" />
+                <ScalarProperty Name="AgentsID" ColumnName="AgentsID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Agents">
+            <EntityTypeMapping TypeName="HumerResourceModel.Agents">
+              <MappingFragment StoreEntitySet="Agents">
+                <ScalarProperty Name="AgentsID" ColumnName="AgentsID" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="False" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

@@ -1,0 +1,64 @@
+﻿@model HumerResource.Models.Addresses
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<fieldset>
+    <legend>Addresses</legend>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.AddressID)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.AddressID)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Address1)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Address1)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Address2)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Address2)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Town)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Town)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Contry)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Contry)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Postcode)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Postcode)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Agents.FirstName)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Agents.FirstName)
+    </div>
+</fieldset>
+<p>
+    @Html.ActionLink("Edit", "Edit", new {  id=Model.AddressID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

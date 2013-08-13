@@ -1,0 +1,84 @@
+﻿@model HumerResource.Models.Addresses
+
+@{
+    ViewBag.Title = "Edit";
+}
+
+<h2>Edit</h2>
+
+@using (Html.BeginForm()) {
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend>Addresses</legend>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.AddressID)
+        </div>
+        <div class="editor-field" >
+            @Html.TextBoxFor(model => model.AddressID, new Dictionary<string, object>(){{"readonly", "true"}})
+            @Html.ValidationMessageFor(model => model.AddressID)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Address1)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Address1)
+            @Html.ValidationMessageFor(model => model.Address1)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Address2)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Address2)
+            @Html.ValidationMessageFor(model => model.Address2)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Town)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Town)
+            @Html.ValidationMessageFor(model => model.Town)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Contry)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Contry)
+            @Html.ValidationMessageFor(model => model.Contry)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Postcode)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Postcode)
+            @Html.ValidationMessageFor(model => model.Postcode)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.AgentsID, "Agents")
+        </div>
+        <div class="editor-field">
+            @Html.DropDownList("AgentsID", String.Empty)
+            @Html.ValidationMessageFor(model => model.AgentsID)
+        </div>
+
+        <p>
+            <input type="submit" value="Save" />
+        </p>
+    </fieldset>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
